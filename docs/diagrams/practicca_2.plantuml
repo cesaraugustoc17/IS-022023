@@ -1,0 +1,310 @@
+@startuml actorsUseCaseDiagram
+    class Tecla
+    class Teclado
+    
+    Teclado  *-->"105..*" Tecla
+
+
+
+
+    class Persona
+    class Estudiante
+    class Profesor
+    class Empleado
+
+    Persona --|> Estudiante
+    Persona --|> Profesor
+    Persona --|> Empleado
+
+
+
+
+    class Disco_Duro
+    class Pistas
+    class Sectores
+    
+    Disco_Duro *--> Pistas
+    Pistas *--> Sectores
+
+
+
+
+    class Poligono
+    class Triangulo
+    class Lado
+
+    Poligono --|> Triangulo
+    Triangulo *--> "3" Lado
+
+
+
+
+    class Equipo_de_Baseball
+    class Homeclub
+    class Jugador
+    class Estadio
+
+
+    Equipo_de_Baseball *-->"*" Jugador
+    Equipo_de_Baseball *--> Homeclub
+    Homeclub --> Estadio
+
+
+
+
+
+    class Comite
+    class Coordiandor
+    
+    Comite "0..1" *--> "2..*" Persona
+    Persona --|> Coordiandor
+    Comite"1..*" *--> Coordiandor
+
+
+
+
+    class Caracterizacion
+    class Criterio
+    class Elemento_clasificado
+
+    Criterio"1..*" *--> Caracterizacion
+    Caracterizacion o--> Elemento_clasificado
+    Criterio ..> Elemento_clasificado
+
+
+
+
+
+    class Laboratorio
+    class Equipos
+
+    class laboratorio_Nuclear
+    class Equipo_Nucleare
+
+    Laboratorio o--> Equipos
+
+    Laboratorio --> laboratorio_Nuclear
+    Equipos --> Equipo_Nucleare
+
+    laboratorio_Nuclear o--> Equipo_Nucleare
+
+
+
+
+
+    class ecuacion
+    class FP
+    class Operando
+    class UFC
+    class TCF
+    class Fi
+
+    ecuacion --> FP
+    Operando --> UFC
+    Operando --> TCF
+
+    FP *--> UFC
+    FP *--> TCF
+
+    TCF *--> "14" Fi
+
+
+
+
+
+
+
+    class TEG
+    class TGM
+    class trabajo_de_investigacion
+    class profesor
+    class tutor
+    class estudiante
+    class estudiante_de_pregrado
+    class estudiante_de_posgrado
+
+    trabajo_de_investigacion --> TEG
+    trabajo_de_investigacion --> TGM
+
+    profesor --> tutor
+    
+    trabajo_de_investigacion "*" *--> "1..2" tutor
+    estudiante --> estudiante_de_posgrado
+    estudiante --> estudiante_de_pregrado 
+    TGM --> "1" estudiante_de_posgrado
+    TEG --> "1..2" estudiante_de_pregrado
+
+
+
+
+
+
+    class documento_grafico
+    class hojas
+    object dibujo
+    object texto
+    object figura_2D
+    object grupo
+    object circulo 
+    object cuadrado 
+    
+    documento_grafico *--> hojas
+    hojas o--> dibujo
+    dibujo --|> texto
+    dibujo --|> figura_2D
+    dibujo --|> grupo 
+    grupo "1" *--> "2..*" dibujo
+    figura_2D --> circulo
+    figura_2D --> cuadrado
+
+
+
+
+
+    class poligono 
+    class punto{
+        cord_x
+        cord_y
+    }
+    poligono --> "3..*" punto
+
+    object T1_poligono
+    object T2_poligono
+    object punto1{
+        cord_x = 0
+        cord_y = 0
+    }
+    object punto2{
+        cord_x = 0
+        cord_y = 10
+    }
+    object punto3{
+        cord_x = 10
+        cord_y = 10
+    }
+    object punto4{
+        cord_x = 10
+        cord_y = 0
+    }
+
+    T1_poligono -down- punto1
+    T1_poligono -left- punto2
+    T1_poligono -right- punto3
+    
+    T2_poligono -left- punto1
+    T2_poligono -up- punto3
+    T2_poligono -down- punto4
+    
+    
+    object C_poligono
+    object Cpunto1{
+        cord_x = 0
+        cord_y = 0
+    }
+    object Cpunto2{
+        cord_x = 1
+        cord_y = 0
+    }
+    object Cpunto3{
+        cord_x = 0
+        cord_y = 1
+    }
+    object Cpunto4{
+        cord_x = 1
+        cord_y = 1
+    }
+
+
+
+    C_poligono -up- Cpunto1
+    C_poligono -down- Cpunto4
+    C_poligono -right- Cpunto2
+    C_poligono -left- Cpunto3
+    
+
+    object 1termino
+    object 1expresion1{
+        -operador_binario = + 
+    }
+    object 1expresion2{
+        -operador_binario = /
+    }
+    object 1variable1{
+        -nombre = x
+    }
+    object 1variable2{
+        -nombre = y
+    }
+    object 1constante{
+        -valor = 2
+    }
+    
+    1termino <|-- 1variable1
+    1termino <|-- 1expresion1
+    1termino <|-- 1variable2
+    1termino <|-- 1expresion2
+    1termino <|-- 1constante
+    
+    1variable1 -right- 1expresion1
+    1expresion1 -right- 1variable2
+    1variable2 -right- 1expresion2
+    1expresion2 -right- 1constante
+
+
+
+
+    object 2termino
+    object 2expresion1{
+        -operador_binario = / 
+    }
+    object 2expresion2{
+        -operador_binario = +
+    }
+    object 2variable1{
+        -nombre = x
+    }
+    object 2variable2{
+        -nombre = y
+    }
+    object 2constante{
+        -valor = 3
+    }
+    
+    2termino <|-- 2variable1
+    2termino <|-- 2expresion1
+    2termino <|-- 2variable2
+    2termino <|-- 2expresion2
+    2termino <|-- 2constante
+    
+    2variable1 -right- 2expresion1
+    2expresion1 -right- 2constante
+    2constante -right- 2expresion2
+    2expresion2 -right- 2variable2
+
+
+    object 3termino
+    object 3expresion{
+        -operador_binario = /
+    }
+    object 3variable1
+    object 3variable2
+    
+    3termino <|-- 3variable1
+    3termino <|-- 3variable2
+    3termino <|-- 3expresion
+
+    3variable1 -- 1termino
+    3variable2 -- 2termino
+    3variable1 -right- 3expresion
+    3expresion -right- 3variable2
+    
+    
+
+    
+
+
+
+
+
+
+@enduml
